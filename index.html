@@ -1,149 +1,234 @@
-<!doctype html>
+      <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Coiffure Havana — عروض الحلاقة</title>
+  <title>Coiffure Havana — عروض الحلاقة الفاخرة</title>
 
-  <!-- خط عربي من جوجل -->
+  <!-- الخط والأيقونات -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- أيقونات (Font Awesome CDN) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root{
-      --accent:#b8860b; /* لون فاخر ذهبي */
-      --dark: #0f1724;
-      --glass: rgba(255,255,255,0.06);
-      --text: #eaeaea;
-      --card-bg: rgba(255,255,255,0.04);
-      --max-width: 1100px;
+      --accent:#d4af37;
+      --dark:#0a1a15;
+      --text:#f5f5f5;
+      --card-bg:rgba(255,255,255,0.05);
+      --max-width:1100px;
     }
 
-    *{box-sizing:border-box;font-family: 'Cairo', system-ui, sans-serif; margin:0; padding:0}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+    html{scroll-behavior:smooth;}
     body{
       min-height:100vh;
       color:var(--text);
-      background: linear-gradient(rgba(9,11,14,0.45), rgba(9,11,14,0.45)), url('https://images.unsplash.com/photo-1542327897-9a7f7f6f9f4e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),
+        url('https://images.unsplash.com/photo-1599940824395-2f38435ff173?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       display:flex;
+      flex-direction:column;
       align-items:center;
-      justify-content:center;
-      padding:40px 20px;
     }
 
     .container{
       width:100%;
       max-width:var(--max-width);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius:20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-      overflow:hidden;
-      backdrop-filter: blur(6px);
-      display:grid;
-      grid-template-columns: 1fr 420px;
-      gap:24px;
-      padding:28px;
+      padding:30px 20px;
+      display:flex;
+      flex-direction:column;
+      gap:28px;
     }
 
-    /* رأس الموقع */
-    header{
-      grid-column: 1 / -1;
+    nav{
+      width:100%;
+      background:rgba(0,0,0,0.6);
+      backdrop-filter:blur(6px);
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+    .nav-container{
+      max-width:var(--max-width);
+      margin:auto;
+      padding:10px 20px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
-      padding-bottom:8px;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      flex-wrap:wrap;
     }
-    .brand{
-      display:flex;
-      gap:14px;
-      align-items:center;
-    }
-    .logo{
-      width:72px;
-      height:72px;
-      border-radius:14px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:20px;
+    .nav-logo{
       color:var(--accent);
-      box-shadow: inset 0 -8px 18px rgba(0,0,0,0.4);
+      font-weight:800;
+      font-size:22px;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
-    .brand h1{font-size:20px; letter-spacing:0.6px;}
-    .brand p{font-size:13px; color:rgba(255,255,255,0.7); margin-top:4px}
+    .nav-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .nav-links a{
+      color:var(--text);
+      text-decoration:none;
+      font-weight:600;
+      transition:color .3s;
+    }
+    .nav-links a:hover{color:var(--accent);}
+    .menu-btn{display:none;border:0;background:none;color:var(--accent);font-size:22px;cursor:pointer;}
+    @media(max-width:700px){
+      .nav-links{
+        display:none;
+        flex-direction:column;
+        width:100%;
+        background:rgba(0,0,0,0.85);
+        padding:10px;
+        border-radius:10px;
+      }
+      .nav-links.active{display:flex;}
+      .menu-btn{display:block;}
+    }
 
-    /* محتوى العروض */
-    .offers{
-      padding:18px 6px;
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:16px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      padding-bottom:10px;
+      margin-top:20px;
     }
-    .hero{
-      margin:16px 0 20px 0;
+    .brand{display:flex;align-items:center;gap:14px;}
+    .logo{
+      width:70px;height:70px;border-radius:14px;
+      background:linear-gradient(135deg,#0b3025,#1f4b3b);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--accent);font-weight:700;font-size:20px;
+      box-shadow:inset 0 -8px 15px rgba(0,0,0,0.5);
     }
-    .hero h2{font-size:26px; margin-bottom:8px}
-    .hero p{color:rgba(255,255,255,0.8); font-size:14px}
+    .brand h1{font-size:22px;}
+    .brand p{font-size:13px;color:rgba(255,255,255,0.75)}
 
+    .contact-top{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-end;
+    }
+    .btn-call{
+      background:var(--accent);
+      color:#111;
+      padding:10px 16px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow:0 6px 14px rgba(212,175,55,0.3);
+      transition:transform .3s ease;
+    }
+    .btn-call:hover{transform:scale(1.05);}
+
+    .offers{display:grid;gap:18px;}
+    .hero h2{font-size:26px;margin-bottom:6px;color:var(--accent)}
+    .hero p{font-size:14px;color:rgba(255,255,255,0.8)}
     .cards{
       display:grid;
-      gap:12px;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:14px;
     }
     .card{
       background:var(--card-bg);
-      padding:14px;
       border-radius:12px;
-      border: 1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      padding:16px;
+      border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 6px 16px rgba(0,0,0,0.4);
+      transition:transform .3s ease;
     }
-    .card h3{margin-bottom:6px}
+    .card:hover{transform:translateY(-6px);}
+    .card h3{margin-bottom:6px;font-size:18px;}
+    .small{font-size:13px;color:rgba(255,255,255,0.7);}
     .price{
-      display:inline-block;
       margin-top:10px;
+      background:rgba(0,0,0,0.4);
+      display:inline-block;
       padding:8px 12px;
       border-radius:10px;
-      background:rgba(0,0,0,0.4);
-      font-weight:700;
       color:var(--accent);
-    }
-    .small{font-size:13px; color:rgba(255,255,255,0.75)}
-
-    /* عمود الاتصال */
-    .contact{
-      padding:18px;
-      border-left: 1px solid rgba(255,255,255,0.03);
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      align-items:stretch;
-      justify-content:flex-start;
-    }
-    .contact h3{font-size:18px}
-    .contact .info{
-      background:var(--glass);
-      padding:12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.03);
-    }
-    .contact a{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:12px 14px;
-      border-radius:10px;
-      text-decoration:none;
-      color: #07101a;
       font-weight:700;
     }
-    .btn-whatsapp{background:#25d366}
-    .btn-email{background:var(--accent); color:#0f0f0f}
+    .card button{
+      margin-top:10px;
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:0;
+      font-weight:700;
+      background:var(--accent);
+      color:#111;
+      cursor:pointer;
+    }
 
-    .contact .note{font-size:13px; color:rgba(255,255,255,0.75)}
+    .section{
+      background:rgba(255,255,255,0.03);
+      border-radius:16px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,0.05);
+      margin-top:10px;
+    }
+    .section h2{color:var(--accent);font-size:22px;margin-bottom:12px;}
 
-    /* شريط واتساب ثابت أسفل - للجوال */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+    }
+    .gallery img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:12px;
+      transition:transform .4s ease;
+      cursor:pointer;
+    }
+    .gallery img:hover{transform:scale(1.08);}
+
+    .services ul{
+      list-style:none;
+      display:grid;
+      gap:8px;
+      font-size:14px;
+      color:rgba(255,255,255,0.8);
+    }
+    .services li i{color:var(--accent);margin-left:6px;}
+
+    .review{
+      background:rgba(255,255,255,0.04);
+      border-radius:12px;
+      padding:12px;
+      margin-bottom:10px;
+    }
+    .review p{font-size:14px;margin-bottom:6px;}
+    .review span{color:var(--accent);font-size:13px;}
+
+    .location iframe{
+      width:100%;
+      height:280px;
+      border:0;
+      border-radius:12px;
+      margin-top:10px;
+    }
+    .location .hours{
+      margin-top:12px;
+      font-size:14px;
+      color:rgba(255,255,255,0.8);
+      line-height:1.8;
+    }
+
     .whatsapp-fab{
       position:fixed;
       left:18px;
@@ -151,146 +236,112 @@
       z-index:999;
     }
     .whatsapp-fab a{
-      display:flex;
-      align-items:center;
-      gap:10px;
+      display:flex;align-items:center;gap:8px;
+      background:#25d366;color:#041f13;
       padding:14px 16px;
       border-radius:999px;
-      background:#25d366;
-      color:#062017;
-      font-weight:800;
       text-decoration:none;
-      box-shadow: 0 8px 24px rgba(37,211,102,0.18);
-    }
-
-    /* تفاعل */
-    .card button{
-      margin-top:10px;
-      padding:8px 12px;
-      border-radius:10px;
-      border:0;
-      cursor:pointer;
-      font-weight:700;
-      background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      color:var(--text);
-    }
-
-    /* استجابة */
-    @media (max-width:980px){
-      .container{grid-template-columns:1fr; padding:18px}
-      .contact{order:2}
-    }
-    @media (max-width:520px){
-      .cards{grid-template-columns:1fr}
-      .logo{width:60px;height:60px;font-size:18px}
+      font-weight:800;
+      box-shadow:0 6px 18px rgba(37,211,102,0.2);
     }
   </style>
 </head>
 <body>
 
-  <div class="container" role="main" aria-label="موقع Coiffure Havana - عروض الحلاقة">
+  <!-- الشريط العلوي -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo"><i class="fa-solid fa-scissors"></i> Coiffure Havana</div>
+      <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="nav-links">
+        <a href="#offers">العروض</a>
+        <a href="#services">الخدمات</a>
+        <a href="#gallery">المعرض</a>
+        <a href="#reviews">التقييمات</a>
+        <a href="#location">الموقع</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
     <header>
       <div class="brand">
         <div class="logo">CH</div>
         <div>
           <h1>Coiffure Havana</h1>
-          <p>تجربة حلاقة فاخرة — جودة، راحة، وستايل</p>
+          <p>تجربة فاخرة — أناقة وراحة</p>
         </div>
       </div>
 
-      <div style="text-align:left">
-        <div style="font-size:13px; color:rgba(255,255,255,0.8);">اتصل الآن</div>
-        <div style="margin-top:6px; display:flex; gap:8px; align-items:center; justify-content:flex-end">
-          <!-- رقم الواتساب كزر قصير -->
-          <a href="https://wa.me/213649998364" target="_blank" rel="noopener" style="background:#25d366;padding:8px 12px;border-radius:8px;color:#071216;text-decoration:none;font-weight:700;">
-            <i class="fa-brands fa-whatsapp"></i> واتساب
-          </a>
-          <!-- ايميل -->
-          <a href="mailto:bilallaribi997@gmail.com?subject=حجز%20في%20Coiffure%20Havana" style="background:var(--accent); padding:8px 12px;border-radius:8px;color:#071216;text-decoration:none;font-weight:700;">
-            <i class="fa-regular fa-envelope"></i> إيميل
-          </a>
-        </div>
+      <div class="contact-top">
+        <a class="btn-call" href="tel:+213649998364"><i class="fa-solid fa-phone"></i> اتصل الآن</a>
+        <a class="btn-call" href="https://wa.me/213649998364" target="_blank"><i class="fa-brands fa-whatsapp"></i> واتساب مباشر</a>
       </div>
     </header>
 
-    <!-- العمود الأساسي: عروض -->
-    <section class="offers" aria-labelledby="offersTitle">
+    <!-- العروض -->
+    <section class="offers section" id="offers">
       <div class="hero">
-        <h2 id="offersTitle">عروضنا المميزة لهذا الشهر</h2>
-        <p class="small">حجز سريع — خدمة سريعة ومحترفة. الأسعار تقريبية ومناسبة للسوق المحلي.</p>
+        <h2>💈 عروض الشهر</h2>
+        <p>احجز موعدك الآن واستفد من التخفيضات الحصرية.</p>
       </div>
-
-      <div class="cards" role="list">
-        <article class="card" role="listitem">
-          <h3>قصة شعر كلاسيكية + تشذيب دقن</h3>
-          <p class="small">خدمة كاملة مع منتج تصفيف خفيف.</p>
-          <div class="price">1,200 دج</div>
-          <div><button onclick="window.location.href='https://wa.me/213649998364?text=مرحبا%20أريد%20حجز%20قصة%20شعر%20وكيف%20الوقت%20المتاح؟'">احجز الآن</button></div>
-        </article>
-
-        <article class="card" role="listitem">
-          <h3>باقة الأناقة — شامل تبيض/تصفيف</h3>
-          <p class="small">تجربة فاخرة مع تدليك فروة الرأس.</p>
-          <div class="price">2,800 دج</div>
-          <div><button onclick="window.location.href='mailto:bilallaribi997@gmail.com?subject=طلب%20باقة%20الأناقة&body=مرحبًا%20أرغب%20في%20مزيد%20من%20المعلومات'">اطلب عبر الإيميل</button></div>
-        </article>
-
-        <article class="card" role="listitem">
-          <h3>تصفيف سريع للرجال</h3>
-          <p class="small">مثالي قبل الخروج أو حدث خاص.</p>
-          <div class="price">900 دج</div>
-          <div><button onclick="window.location.href='https://wa.me/213649998364?text=أريد%20تصفيف%20سريع%20اليوم'">احجز الآن</button></div>
-        </article>
-
-        <article class="card" role="listitem">
-          <h3>باقة العائلة (خصم)</h3>
-          <p class="small">خصم عند حجز أكثر من شخصين.</p>
-          <div class="price">من 3,500 دج</div>
-          <div><button onclick="window.location.href='mailto:bilallaribi997@gmail.com?subject=استفسار%20باقة%20العائلة&body=أرغب%20بمعلومات%20عن%20الخصم'">اطلب عبر الإيميل</button></div>
-        </article>
+      <div class="cards">
+        <div class="card"><h3>قصة شعر + دقن</h3><p class="small">لمظهر متناسق ومنعش.</p><div class="price">900 دج</div><button>احجز الآن</button></div>
+        <div class="card"><h3>باقة الأناقة</h3><p class="small">غسيل + تصفيف + كريم فاخر.</p><div class="price">2 400 دج</div><button>احجز الآن</button></div>
+        <div class="card"><h3>تصفيف سريع</h3><p class="small">مثالي قبل المناسبات.</p><div class="price">700 دج</div><button>احجز الآن</button></div>
+        <div class="card"><h3>باقة العائلة (خصم)</h3><p class="small">خصم عند حجز أكثر من 3 أشخاص.</p><div class="price">من 3 000 دج</div><button>استفسر الآن</button></div>
       </div>
     </section>
 
-    <!-- عمود الاتصال -->
-    <aside class="contact" aria-labelledby="contactTitle">
-      <h3 id="contactTitle">تواصل معنا</h3>
+    <!-- الخدمات -->
+    <section class="services section" id="services">
+      <h2>خدماتنا</h2>
+      <ul>
+        <li><i class="fa-solid fa-check"></i> حلاقة رجالية احترافية.</li>
+        <li><i class="fa-solid fa-check"></i> عناية بالبشرة واللحية.</li>
+        <li><i class="fa-solid fa-check"></i> صبغة شعر طبيعية.</li>
+        <li><i class="fa-solid fa-check"></i> تدليك فروة الرأس بالزيوت.</li>
+      </ul>
+    </section>
 
-      <div class="info">
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="font-size:14px;font-weight:700">واتساب</div>
-          <div class="small">اضغط لبدء محادثة مباشرة:</div>
-          <div style="margin-top:8px; display:flex; gap:8px">
-            <a class="btn-whatsapp" href="https://wa.me/213649998364" target="_blank" rel="noopener">
-              <i class="fa-brands fa-whatsapp"></i> +213 649 99 83 64
-            </a>
-          </div>
-        </div>
+    <!-- المعرض -->
+    <section class="section" id="gallery">
+      <h2>📸 معرض الصور</h2>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a8?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="https://images.unsplash.com/photo-1622286342621-4f3a2abda24b?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="https://images.unsplash.com/photo-1583225152345-5e86c64d7d8c?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="https://images.unsplash.com/photo-1619785292559-fb26a7a90484?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=800&q=80" alt="">
+        <img src="https://images.unsplash.com/photo-1600180758890-6d4b05b9ad33?auto=format&fit=crop&w=800&q=80" alt="">
       </div>
+    </section>
 
-      <div class="info">
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="font-size:14px;font-weight:700">إيميل</div>
-          <div class="small">للحجوزات أو الاستفسارات الرسمية:</div>
-          <div style="margin-top:8px">
-            <a class="btn-email" href="mailto:bilallaribi997@gmail.com?subject=حجز%20Coiffure%20Havana">
-              <i class="fa-regular fa-envelope"></i> bilallaribi997@gmail.com
-            </a>
-          </div>
-        </div>
-      </div>
+    <!-- التقييمات -->
+    <section class="reviews section" id="reviews">
+      <h2>آراء الزبائن</h2>
+      <div class="review"><p>“خدمة ممتازة جدًا، أجواء راقية وأدوات نظيفة.”</p><span>— سامي من الجزائر</span></div>
+      <div class="review"><p>“أفضل صالون تعاملت معه، شكراً Havana.”</p><span>— ياسين من البليدة</span></div>
+    </section>
 
-      <div class="note">
-        ساعات العمل: الإثنين — السبت، 09:00 — 20:00<br>
-        العنوان: متاح عند الطلب عبر واتساب.
+    <!-- الموقع -->
+    <section class="location section" id="location">
+      <h2>📍 موقعنا وساعات العمل</h2>
+      <p class="small">نستقبلكم طوال الأسبوع (ما عدا الأحد).</p>
+      <div class="hours">
+        <b>الدوام:</b><br> الإثنين – السبت: 09:00 ص إلى 20:00 م<br> الأحد: مغلق
       </div>
-    </aside>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12752.88664882346!2d3.048092!3d36.753768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e327d19a1e6bdf%3A0xa8b90f410c4a18f!2sAlger%2C%20Algeria!5e0!3m2!1sar!2sdz!4v1698270000000!5m2!1sar!2sdz" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
   </div>
 
-  <!-- زر واتساب ثابت للجوال -->
-  <div class="whatsapp-fab" aria-hidden="true">
-    <a href="https://wa.me/213649998364?text=مرحبا%20أريد%20حجز%20في%20Coiffure%20Havana" target="_blank" rel="noopener">
-      <i class="fa-brands fa-whatsapp"></i>
-      احجز عبر واتساب
+  <div class="whatsapp-fab">
+    <a href="https://wa.me/213649998364?text=مرحبا%20أريد%20حجز%20موعد" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> احجز عبر واتساب
     </a>
   </div>
 
